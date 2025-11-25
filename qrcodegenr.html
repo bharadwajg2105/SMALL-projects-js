@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="qrcodegenr.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">
+    <p> Enter yout Text or url</p> 
+    <input type="text" placeholder="enter here" id="txtinp" >
+    <button onclick="Generateimage()">Generate Here</button>
+    <div class="image">
+        <img src="" id="imgout" >
+    </div>
+
+
+<script>
+
+
+imgout=document.getElementById("imgout");
+txtinp=document.getElementById("txtinp");
+imgref=document.getElementById("imgref");
+
+
+function Generateimage(){
+
+    imgout.src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+txtinp;
+
+
+}
+
+</script>
+
+
+</div>
+    
+</body>
+</html>
