@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="agecalc.css" rel="stylesheet">
+    <title>Age Calculator</title>
+</head>
+<body>
+    
+    <header>
+        <h1 class="title">JAVASCRIPT AGE<br><span class="calc">CALCULATOR</span></h1>
+    </header>
+
+    <main class="calculator-container">
+        
+        <div class="date-input-section">
+            <input type="date" id="date" aria-label="Enter your date of birth">
+            <button onclick="calculateAge()">Calculate</button>
+        </div>
+        
+        <div class="output">
+            <h4 id="result">Enter a date and click calculate.</h4>
+        </div>
+        
+    </main>
+    
+    <script>
+        let userInput = document.getElementById("date");
+        userInput.max = new Date().toISOString().split("T")[0];
+
+        function calculateAge() {
+            const birthDateValue = userInput.value;
+            const outputElement = document.getElementById("result");
+
+            if (!birthDateValue) {
+                outputElement.textContent = "Please select a date of birth.";
+                return;
+            }
+
+            const birthDate = new Date(birthDateValue);
+            const today = new Date();
+
+            today.setHours(0, 0, 0, 0);
+
+          
+            const timeDifferenceMs = today.getTime() - birthDate.getTime();
+
+            if (timeDifferenceMs < 0) {
+                outputElement.textContent = "The selected date cannot be in the future.";
+                return;
+            }
+
+           
+            const msInDay = 1000 * 60 * 60 * 24;
+            const totalDays = Math.floor(timeDifferenceMs / msInDay);
+
+            outputElement.innerHTML = `You have lived for approximately <span style="color: #007bff; font-weight: bold;">${totalDays.toLocaleString()}</span> days.`;
+        }
+    </script>
+    
+</body>
+</html>
